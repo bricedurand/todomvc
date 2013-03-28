@@ -23,6 +23,10 @@ if (Meteor.isClient) {
             }
         }
     });
+
+    Template.todo.todo_completed = function() {
+        return this.completed;
+    }
 }
 
 if (Meteor.isServer) {

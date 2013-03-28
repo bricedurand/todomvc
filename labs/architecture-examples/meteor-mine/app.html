@@ -50,7 +50,7 @@
 <template name="todo">
     <li class="completed">
         <div class="view">
-            <input class="toggle" type="checkbox" checked>
+            <input class="toggle" type="checkbox" {{#if todo_completed}}checked="checked"{{/if}}>
             <label>{{ title }}</label>
             <button class="destroy"></button>
         </div>
