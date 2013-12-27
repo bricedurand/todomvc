@@ -10,4 +10,10 @@ function TodoCtrl($scope) {
     $scope.todos.push({ title: $scope.todoText.trim(), completed: false });
     $scope.todoText = "";
   }
+
+  $scope.markAll = function(checked) {
+    $scope.todos.forEach(function(todo) {
+      todo.completed = checked;
+    });
+  }
 }
