@@ -16,4 +16,8 @@ function TodoCtrl($scope) {
       todo.completed = checked;
     });
   }
+
+  $scope.editTodo = function(todo) {
+    $scope.editedTodo = todo;
+  }
 }
