@@ -46,13 +46,13 @@
 </template>
 
 <template name="todo">
-    <li {{#if todo_completed}}class="completed"{{/if}}>
+    <li class="{{#if todo_completed}}completed{{/if}} {{#if todo_editing}}editing{{/if}}">
         <div class="view">
             <input class="toggle" type="checkbox" {{#if todo_completed}}checked="checked"{{/if}}>
             <label>{{ title }}</label>
             <button class="destroy"></button>
         </div>
-        <input class="edit" value="Create a TodoMVC template">
+        <input class="edit" value="{{title}}">
     </li>
 </template>
 

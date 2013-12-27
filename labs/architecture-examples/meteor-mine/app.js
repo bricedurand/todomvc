@@ -37,10 +37,17 @@ if (Meteor.isClient) {
         return this.completed;
     }
 
+    Template.todo.todo_editing = function() {
+        return this._id === Session.get('editing_id');
+    }
+
     Template.todo.events({
         'change': function (event) {
             var should_be_completed = $(event.target).is(':checked');
             Todos.update({ _id: this._id }, { $set : { completed: should_be_completed } });
+        },
+        'dblclick label': function(event) {
+            Session.set('editing_id', this._id);
         }
     });
 }
