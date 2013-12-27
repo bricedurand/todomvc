@@ -14,6 +14,15 @@ if (Meteor.isClient) {
         return Todos.find();
     };
 
+    Template.main.events({
+        'change #toggle-all': function(event) {
+            var should_be_completed = $(event.target).is(':checked');
+            Todos.find({ completed: !should_be_completed }).forEach(function(todo) {
+                Todos.update({ _id: todo._id }, { $set: { completed : should_be_completed } });
+            });
+        }
+    });
+
     Template.todoapp.events({
         'keydown #new-todo': function (event) {
             var todoTitle = event.target.value.trim();
