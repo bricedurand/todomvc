@@ -92,6 +92,14 @@ if (Meteor.isClient) {
             tpl.find('input.edit').focus();
         }
     });
+
+    Template.footer.number_left_items = function() {
+        return Todos.find({ completed: false }).count();
+    };
+
+    Template.footer.has_one_item_left = function() {
+        return Todos.find({ completed: false }).count() == 1;
+    }
 }
 
 if (Meteor.isServer) {
