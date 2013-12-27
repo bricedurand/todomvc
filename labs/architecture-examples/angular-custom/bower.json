@@ -2,6 +2,7 @@
   "name": "todomvc-angular-custom",
   "version": "0.0.1",
   "dependencies": {
-    "todomvc-common": "~0.1.0"
+    "todomvc-common": "~0.1.0",
+    "angular": "~1.2.6"
   }
 }
