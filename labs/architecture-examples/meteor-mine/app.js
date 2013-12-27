@@ -100,6 +100,16 @@ if (Meteor.isClient) {
     Template.footer.has_one_item_left = function() {
         return Todos.find({ completed: false }).count() == 1;
     }
+
+    Template.footer.number_completed_items = function() {
+        return Todos.find({ completed: true }).count();
+    }
+
+    Template.footer.events({
+        'click #clear-completed': function() {
+            Meteor.call('removeCompletedTodos');
+        }
+    });
 }
 
 if (Meteor.isServer) {
@@ -107,6 +117,12 @@ if (Meteor.isServer) {
         // code to run on server at startup
 
 
+    });
+
+    Meteor.methods({
+        removeCompletedTodos: function() {
+            Todos.remove({ completed: true });
+        }
     });
 
     Meteor.publish("todos", function () {
