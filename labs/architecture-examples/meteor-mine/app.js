@@ -4,6 +4,9 @@ Todos = new Meteor.Collection("todos");
 if (Meteor.isClient) {
     var ENTER_KEY = 13;
 
+    // Session var to keep todo which is currently in editing mode, if any
+    Session.set('editing_todo', null);
+
     Meteor.subscribe("todos");
 
     Template.todoapp.todoCount = function() {
@@ -37,6 +40,44 @@ if (Meteor.isClient) {
         return this.completed;
     }
 
+    
+    // Returns an event map that handles the "escape" and "return" keys and
+    // "blur" events on a text input (given by selector) and interprets them
+    // as "ok" or "cancel".
+    var okCancelEvents = function (selector, callbacks) {
+      var ok = callbacks.ok || function () {};
+      var cancel = callbacks.cancel || function () {};
+
+      var events = {};
+      events['keyup '+selector+', keydown '+selector+', blur '+selector] = function (evt) {
+        if (evt.type === "keydown" && evt.which === 27) {
+            // escape = cancel
+            cancel.call(this, evt);
+
+        } else if (evt.type === "keyup" && evt.which === 13 || evt.type === "blur") {
+            // blur/return/enter = ok/submit if non-empty
+            var value = String(evt.target.value || "");
+            if (value)
+                ok.call(this, value, evt);
+            else
+                cancel.call(this, evt);
+        }
+    };
+
+    return events;
+    };
+    
+
+    Template.todo.events( okCancelEvents('li.editing input.edit', {
+        ok: function (value) {
+            Todos.update(this._id, {$set: {title: $.trim(value) }});
+            Session.set('editing_id', null);
+        },
+        cancel: function () {
+            Session.set('editing_id', null);
+        }
+    }));
+
     Template.todo.todo_editing = function() {
         return this._id === Session.get('editing_id');
     }
@@ -46,8 +87,9 @@ if (Meteor.isClient) {
             var should_be_completed = $(event.target).is(':checked');
             Todos.update({ _id: this._id }, { $set : { completed: should_be_completed } });
         },
-        'dblclick label': function(event) {
+        'dblclick label': function(event, tpl) {
             Session.set('editing_id', this._id);
+            tpl.find('input.edit').focus();
         }
     });
 }
