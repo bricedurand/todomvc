@@ -29,7 +29,9 @@
                                                         <label ng-dblclick="editTodo(todo)">{{ todo.title }}</label>
                                                         <button class="destroy"></button>
                                                 </div>
-                                                <input class="edit" value="{{todo.title}}">
+                                                <form ng-submit="doneEditing(todo)">
+                                                	<input class="edit" ng-model="todo.title" value="{{todo.title}}">
+                                                </form>
                                         </li>
                         </section>
                         <!-- This footer should hidden by default and shown when there are todos -->

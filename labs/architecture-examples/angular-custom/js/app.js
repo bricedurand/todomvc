@@ -20,4 +20,12 @@ function TodoCtrl($scope) {
   $scope.editTodo = function(todo) {
     $scope.editedTodo = todo;
   }
+
+  $scope.doneEditing = function(todo) {
+    todo.title = todo.title.trim();
+    $scope.editedTodo = null; 
+
+    if (!todo.title)
+      $scope.removeTodo(todo); 
+  }
 }
