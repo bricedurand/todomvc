@@ -36,6 +36,13 @@ if (Meteor.isClient) {
     Template.todo.todo_completed = function() {
         return this.completed;
     }
+
+    Template.todo.events({
+        'change': function (event) {
+            var should_be_completed = $(event.target).is(':checked');
+            Todos.update({ _id: this._id }, { $set : { completed: should_be_completed } });
+        }
+    });
 }
 
 if (Meteor.isServer) {

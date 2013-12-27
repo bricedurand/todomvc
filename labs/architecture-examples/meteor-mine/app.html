@@ -46,7 +46,7 @@
 </template>
 
 <template name="todo">
-    <li class="completed">
+    <li {{#if todo_completed}}class="completed"{{/if}}>
         <div class="view">
             <input class="toggle" type="checkbox" {{#if todo_completed}}checked="checked"{{/if}}>
             <label>{{ title }}</label>
