@@ -1,5 +1,5 @@
 function TodoCtrl($scope) {
-  $scope.todos = [
+  var todos = $scope.todos = [
     {title: 'Create a TodoMVC template', completed: true},
     {title: 'Rule the web', completed: false}];
  
@@ -7,12 +7,12 @@ function TodoCtrl($scope) {
     if ($scope.todoText.length == 0)
       return;
 
-    $scope.todos.push({ title: $scope.todoText.trim(), completed: false });
+    todos.push({ title: $scope.todoText.trim(), completed: false });
     $scope.todoText = "";
   }
 
   $scope.markAll = function(checked) {
-    $scope.todos.forEach(function(todo) {
+    todos.forEach(function(todo) {
       todo.completed = checked;
     });
   }
@@ -28,4 +28,20 @@ function TodoCtrl($scope) {
     if (!todo.title)
       $scope.removeTodo(todo); 
   }
+
+  // $scope.remainingTodos = function() {
+  //   var remainingTodoList = $scope.todos.filter(function(todo) {
+  //     return todo.completed == false;
+  //   });
+
+  //   return remainingTodoList.length; 
+  // }
+
+  $scope.$watch('todos', function(newValue, oldValue) {
+    var remainingTodoList = $scope.todos.filter(function(todo) {
+      return todo.completed == false;
+    });
+   
+    $scope.remainingTodos = remainingTodoList.length;
+  });
 }
