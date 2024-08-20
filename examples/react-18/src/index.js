@@ -5,6 +5,7 @@ import reportWebVitals from './reportWebVitals';
 
 import "todomvc-app-css/index.css";
 import "todomvc-common/base.css";
+import "todomvc-common/base.js";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
