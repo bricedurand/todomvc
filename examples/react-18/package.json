@@ -9,7 +9,9 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "todomvc-app-css": "^2.0.0",
+    "todomvc-common": "^1.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
