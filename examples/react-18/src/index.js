@@ -7,7 +7,7 @@ import "todomvc-app-css/index.css";
 import "todomvc-common/base.css";
 import "todomvc-common/base.js";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementsByClassName('todoapp')[0]);
 root.render(
   <React.StrictMode>
     <App />
