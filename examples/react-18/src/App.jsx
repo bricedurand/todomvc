@@ -9,7 +9,7 @@ function App() {
     <div>
       <Header />
       <Main todoList={todoList} />
-      <Footer />
+      <Footer todoList={todoList} />
     </div>
   );
 }

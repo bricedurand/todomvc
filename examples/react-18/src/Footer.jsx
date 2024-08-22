@@ -1,4 +1,4 @@
-export default function Footer() {
+export default function Footer({ todoList }) {
   return (
     // This footer should be hidden by default and shown when there are todos
     <footer className="footer">
