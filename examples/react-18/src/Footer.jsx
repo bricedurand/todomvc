@@ -1,7 +1,7 @@
 export default function Footer({ todoList }) {
   return (
     // This footer should be hidden by default and shown when there are todos
-    <footer className="footer">
+    <footer className="footer" style={{display: todoList.length == 0 && 'none'}}>
       {/* <!-- This should be `0 items left` by default --> */}
       <span className="todo-count"><strong>0</strong> item left</span>
       <ul className="filters">
