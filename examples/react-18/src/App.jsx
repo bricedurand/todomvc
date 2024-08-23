@@ -5,9 +5,12 @@ import Footer from "./Footer";
 const todoList = [ { id: 1, text: "Kiffer" }, { id: 2, text: "Rire" } ]
 
 function App() {
+  function addTodo(todo) {
+  }
+
   return (
     <div>
-      <Header />
+      <Header onEnterKey={addTodo} />
       <Main todoList={todoList} />
       <Footer todoList={todoList} />
     </div>
