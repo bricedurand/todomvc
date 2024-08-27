@@ -1,11 +1,13 @@
 import Header from "./Header";
 import Main from "./Main";
 import Footer from "./Footer";
-
-const todoList = [ { id: 1, text: "Kiffer" }, { id: 2, text: "Rire" } ]
+import { useState } from "react";
 
 function App() {
-  function addTodo(todo) {
+  const[todoList, setTodoList] = useState([{ id: 1, text: "Kiffer" }, { id: 2, text: "Rire" }])
+
+  function addTodo(todoText) {
+    setTodoList([...todoList, { id: 3, text: todoText }]);
   }
 
   return (
