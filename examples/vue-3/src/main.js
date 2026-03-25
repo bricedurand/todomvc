@@ -6,4 +6,4 @@ const app = createApp(App)
 
 app.use(router)
 
-app.mount('#todoapp')
+app.mount('.todoapp')
