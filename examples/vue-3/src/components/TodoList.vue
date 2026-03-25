@@ -5,21 +5,15 @@ export default {
   components: {
     TodoItem
   },
-  data() {
-    return {
-      todoList: [
-        { id: 1, text: 'Buy groceries', completed: false },
-        { id: 2, text: 'Clean the house', completed: true },
-        { id: 3, text: 'Finish homework', completed: false }
-      ]
-    }
+  props: {
+    todoList: Array
   }
 }
 </script>
 
 <template>
     <!-- This section should be hidden by default and shown when there are todos -->
-    <section class="main">
+    <section class="main" v-if="todoList.length > 0">
         <input id="toggle-all" class="toggle-all" type="checkbox">
         <label for="toggle-all">Mark all as complete</label>
         <ul class="todo-list">
