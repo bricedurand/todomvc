@@ -14,6 +14,6 @@ export default {
         <label>{{ text }}</label>
         <button class="destroy"></button>
         </div>
-        <input class="edit" value="{{ text }}"">
+        <input class="edit" value="{{ text }}">
     </li>
 </template>
