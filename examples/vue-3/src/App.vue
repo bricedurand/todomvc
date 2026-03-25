@@ -18,7 +18,7 @@ export default {
 </script>
 
 <template>
-  <TodoHeader/>
+  <TodoHeader @add-todo="(text) => todoList.push({ id: Date.now(), text })"/>
   <TodoList :todoList/>
   <TodoFooter :todoList/>
 </template>
