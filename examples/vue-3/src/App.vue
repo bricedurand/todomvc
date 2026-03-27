@@ -14,12 +14,17 @@ export default {
       todoList: []
     }
   },
+  methods: {
+    updateTodo(editedTodo) {
+      this.todoList.find(t => t.id === editedTodo.id).text = editedTodo.text;
+    },
+  }
 }
 </script>
 
 <template>
   <TodoHeader @add-todo="(text) => todoList.push({ id: Date.now(), text, completed: false })"/>
-  <TodoList :todoList/>
+  <TodoList :todoList @update-todo="updateTodo"/>
   <TodoFooter :todoList/>
 </template>
 
