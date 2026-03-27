@@ -20,7 +20,11 @@ export default {
       this.editing = false;
       this.editText = this.editText.trim();
 
-      this.$emit('update-todo', { ...this.todo, text: this.editText });
+      if (!this.editText) {
+        this.$emit('delete-todo', this.todo);
+      } else {
+        this.$emit('update-todo', { ...this.todo, text: this.editText });
+      }
     },
     cancelEdit() {
       this.editing = false;
@@ -36,7 +40,7 @@ export default {
     <div class="view">
       <input class="toggle" type="checkbox" v-model="todo.completed">
       <label @dblclick="editTodo">{{ todo.text }}</label>
-      <button class="destroy"></button>
+      <button class="destroy" @click="$emit('delete-todo', todo)"></button>
     </div>
     <input
       class="edit"

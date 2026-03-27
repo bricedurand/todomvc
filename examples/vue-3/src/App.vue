@@ -18,13 +18,16 @@ export default {
     updateTodo(editedTodo) {
       this.todoList.find(t => t.id === editedTodo.id).text = editedTodo.text;
     },
+    deleteTodo(deletedTodo) {
+      this.todoList = this.todoList.filter(t => t.id !== deletedTodo.id);
+    }
   }
 }
 </script>
 
 <template>
   <TodoHeader @add-todo="(text) => todoList.push({ id: Date.now(), text, completed: false })"/>
-  <TodoList :todoList @update-todo="updateTodo"/>
+  <TodoList :todoList @update-todo="updateTodo" @delete-todo="deleteTodo"/>
   <TodoFooter :todoList/>
 </template>
 
