@@ -22,8 +22,13 @@ Vue (pronounced /vjuː/, like view) is a JavaScript framework for building user 
 
 ## Implementation
 
-How was the app created? Anything worth sharing about the process of creating the app? Any spec violations?
+Project was started using `npm create vue@latest`.
 
+It use the Options API rather than the Composition API to make it easy to read.
+
+Design choices were made based on best practices.
+For example, the `todoList` lives in the parent App component and passes it as props to the list and Footer.
+Child components emit events that are handled by the App component which manipulates the list.
 
 ## Credit
 
