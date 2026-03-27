@@ -1,8 +1,16 @@
 <script>
 export default {
-  props: {
-    todoList: Array
-  }
+    props: {
+        todoList: Array
+    },
+    computed: {
+        remainingCount() {
+            return this.todoList.filter(t => !t.completed).length;
+        },
+        remainingText() {
+            return this.remainingCount === 1 ? 'item left' : 'items left';
+        }
+    }
 }
 </script>
 
@@ -10,7 +18,7 @@ export default {
     <!-- This footer should be hidden by default and shown when there are todos -->
     <footer class="footer" v-if="todoList.length > 0">
         <!-- This should be `0 items left` by default -->
-        <span class="todo-count"><strong>0</strong> item left</span>
+        <span class="todo-count"><strong>{{ remainingCount }}</strong> {{ remainingText }}</span>
         <!-- Remove this if you don't implement routing -->
         <ul class="filters">
         <li>
