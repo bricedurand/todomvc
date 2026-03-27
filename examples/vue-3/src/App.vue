@@ -15,6 +15,9 @@ export default {
     }
   },
   methods: {
+    addTodo(text) {
+      (this.todoList.push({ id: Date.now(), text, completed: false }));
+    },
     updateTodo(editedTodo) {
       this.todoList.find(t => t.id === editedTodo.id).text = editedTodo.text;
     },
@@ -26,7 +29,7 @@ export default {
 </script>
 
 <template>
-  <TodoHeader @add-todo="(text) => todoList.push({ id: Date.now(), text, completed: false })"/>
+  <TodoHeader @add-todo="addTodo"/>
   <TodoList :todoList @update-todo="updateTodo" @delete-todo="deleteTodo"/>
   <TodoFooter :todoList/>
 </template>
