@@ -1,4 +1,6 @@
 <script>
+import { RouterLink } from 'vue-router';
+
 export default {
     props: {
         todoList: Array
@@ -22,13 +24,13 @@ export default {
         <!-- Remove this if you don't implement routing -->
         <ul class="filters">
         <li>
-            <a class="selected" href="#/">All</a>
+            <RouterLink class="selected" to="#/">All</RouterLink>
         </li>
         <li>
-            <a href="#/active">Active</a>
+            <RouterLink to="#/active">Active</RouterLink>
         </li>
         <li>
-            <a href="#/completed">Completed</a>
+            <RouterLink to="#/completed">Completed</RouterLink>
         </li>
         </ul>
         <!-- Hidden if no completed items are left ↓ -->

@@ -27,13 +27,26 @@ export default {
     clearCompleted() {
       this.todoList = this.todoList.filter(t => !t.completed);
     }
+  },
+  computed: {
+    filteredTodos() {
+      switch(this.$route.name) {
+        case "active":
+          return this.todoList.filter(t => !t.completed);
+        case "completed":
+          return this.todoList.filter(t => t.completed);
+        default:
+          return this.todoList;
+      }
+    }
+  
   }
 }
 </script>
 
 <template>
   <TodoHeader @add-todo="addTodo"/>
-  <TodoList :todoList="todoList" @update-todo="updateTodo" @delete-todo="deleteTodo"/>
+  <TodoList :todoList="filteredTodos" @update-todo="updateTodo" @delete-todo="deleteTodo"/>
   <TodoFooter :todoList @clear-completed="clearCompleted"/>
 </template>
 
