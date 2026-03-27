@@ -32,6 +32,6 @@ export default {
         </li>
         </ul>
         <!-- Hidden if no completed items are left ↓ -->
-        <button class="clear-completed">Clear completed</button>
+        <button v-if="todoList.some(t => t.completed)" class="clear-completed" @click="$emit('clear-completed')">Clear completed</button>
     </footer>
 </template>

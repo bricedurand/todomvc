@@ -23,6 +23,9 @@ export default {
     },
     deleteTodo(deletedTodo) {
       this.todoList = this.todoList.filter(t => t.id !== deletedTodo.id);
+    },
+    clearCompleted() {
+      this.todoList = this.todoList.filter(t => !t.completed);
     }
   }
 }
@@ -30,8 +33,8 @@ export default {
 
 <template>
   <TodoHeader @add-todo="addTodo"/>
-  <TodoList :todoList @update-todo="updateTodo" @delete-todo="deleteTodo"/>
-  <TodoFooter :todoList/>
+  <TodoList :todoList="todoList" @update-todo="updateTodo" @delete-todo="deleteTodo"/>
+  <TodoFooter :todoList @clear-completed="clearCompleted"/>
 </template>
 
 <style scoped></style>
