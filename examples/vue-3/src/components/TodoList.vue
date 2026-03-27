@@ -17,7 +17,7 @@ export default {
         <input id="toggle-all" class="toggle-all" type="checkbox">
         <label for="toggle-all">Mark all as complete</label>
         <ul class="todo-list">
-            <TodoItem v-for="todo in todoList" :key="todo.id" :text="todo.text"/>
+            <TodoItem v-for="todo in todoList" :key="todo.id" :todo />
         </ul>
     </section>
 </template>

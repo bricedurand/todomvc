@@ -1,7 +1,7 @@
 <script>
 export default {
   props: {
-    text: String
+    todo: Object
   }
 }
 </script>
@@ -11,9 +11,9 @@ export default {
     <li class="completed">
         <div class="view">
         <input class="toggle" type="checkbox" checked>
-        <label>{{ text }}</label>
+        <label>{{ todo.text }}</label>
         <button class="destroy"></button>
         </div>
-        <input class="edit" value="{{ text }}">
+        <input class="edit" value="{{ todo.text }}">
     </li>
 </template>
