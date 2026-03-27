@@ -24,13 +24,13 @@ export default {
         <!-- Remove this if you don't implement routing -->
         <ul class="filters">
         <li>
-            <RouterLink class="selected" to="#/">All</RouterLink>
+            <RouterLink to="/" exact-active-class="selected">All</RouterLink>
         </li>
         <li>
-            <RouterLink to="#/active">Active</RouterLink>
+            <RouterLink to="/active" exact-active-class="selected">Active</RouterLink>
         </li>
         <li>
-            <RouterLink to="#/completed">Completed</RouterLink>
+            <RouterLink to="/completed" exact-active-class="selected">Completed</RouterLink>
         </li>
         </ul>
         <!-- Hidden if no completed items are left ↓ -->
