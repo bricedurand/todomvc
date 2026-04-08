@@ -2,6 +2,7 @@
 import TodoFooter from './components/TodoFooter.vue';
 import TodoHeader from './components/TodoHeader.vue';
 import TodoList from './components/TodoList.vue';
+import { useTodoStore } from './stores/TodoStore';
 
 export default {
   components: {
@@ -9,34 +10,32 @@ export default {
     TodoHeader,
     TodoList
   },
-  data() {
-    return {
-      todoList: []
-    }
+  created() {
+    this.todoStore = useTodoStore();
   },
   methods: {
     addTodo(text) {
-      (this.todoList.push({ id: Date.now(), text, completed: false }));
+      this.todoStore.todos.push({ id: Date.now(), text, completed: false });
     },
     updateTodo(editedTodo) {
-      this.todoList.find(t => t.id === editedTodo.id).text = editedTodo.text;
+      this.todoStore.todos.find(t => t.id === editedTodo.id).text = editedTodo.text;
     },
     deleteTodo(deletedTodo) {
-      this.todoList = this.todoList.filter(t => t.id !== deletedTodo.id);
+      this.todoStore.todos = this.todoStore.todos.filter(t => t.id !== deletedTodo.id);
     },
     clearCompleted() {
-      this.todoList = this.todoList.filter(t => !t.completed);
+      this.todoStore.todos = this.todoStore.todos.filter(t => !t.completed);
     }
   },
   computed: {
     filteredTodos() {
       switch(this.$route.name) {
         case "active":
-          return this.todoList.filter(t => !t.completed);
+          return this.todoStore.todos.filter(t => !t.completed);
         case "completed":
-          return this.todoList.filter(t => t.completed);
+          return this.todoStore.todos.filter(t => t.completed);
         default:
-          return this.todoList;
+          return this.todoStore.todos;
       }
     }
   
@@ -47,7 +46,7 @@ export default {
 <template>
   <TodoHeader @add-todo="addTodo"/>
   <TodoList :todoList="filteredTodos" @update-todo="updateTodo" @delete-todo="deleteTodo"/>
-  <TodoFooter :todoList @clear-completed="clearCompleted"/>
+  <TodoFooter :todoList="this.todoStore.todos" @clear-completed="clearCompleted"/>
 </template>
 
 <style scoped></style>
