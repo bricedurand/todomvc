@@ -13,20 +13,6 @@ export default {
   created() {
     this.todoStore = useTodoStore();
   },
-  methods: {
-    addTodo(text) {
-      this.todoStore.todos.push({ id: Date.now(), text, completed: false });
-    },
-    updateTodo(editedTodo) {
-      this.todoStore.todos.find(t => t.id === editedTodo.id).text = editedTodo.text;
-    },
-    deleteTodo(deletedTodo) {
-      this.todoStore.todos = this.todoStore.todos.filter(t => t.id !== deletedTodo.id);
-    },
-    clearCompleted() {
-      this.todoStore.todos = this.todoStore.todos.filter(t => !t.completed);
-    }
-  },
   computed: {
     filteredTodos() {
       switch(this.$route.name) {
@@ -44,9 +30,9 @@ export default {
 </script>
 
 <template>
-  <TodoHeader @add-todo="addTodo"/>
-  <TodoList :todoList="filteredTodos" @update-todo="updateTodo" @delete-todo="deleteTodo"/>
-  <TodoFooter :todoList="this.todoStore.todos" @clear-completed="clearCompleted"/>
+  <TodoHeader @add-todo="todoStore.addTodo"/>
+  <TodoList :todoList="filteredTodos" @update-todo="todoStore.updateTodo" @delete-todo="todoStore.deleteTodo"/>
+  <TodoFooter :todoList="todoStore.todos" @clear-completed="todoStore.clearCompleted"/>
 </template>
 
 <style scoped></style>
