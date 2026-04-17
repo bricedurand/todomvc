@@ -24,6 +24,10 @@ export const useTodoStore = defineStore('todo', {
     },
     clearCompleted() {
       this.todos = this.todos.filter(t => !t.completed);
+    },
+    toggleAll() {
+      const allCompleted = this.todos.every(t => t.completed);
+      this.todos.forEach(t => t.completed = !allCompleted);
     }
   },
 })

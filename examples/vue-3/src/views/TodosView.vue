@@ -31,7 +31,7 @@ export default {
 
 <template>
   <TodoHeader @add-todo="todoStore.addTodo"/>
-  <TodoList :todoList="filteredTodos" @update-todo="todoStore.updateTodo" @delete-todo="todoStore.deleteTodo"/>
+  <TodoList :todoList="filteredTodos" @update-todo="todoStore.updateTodo" @delete-todo="todoStore.deleteTodo" @toggle-all="todoStore.toggleAll"/>
   <TodoFooter :todoList="todoStore.todos" @clear-completed="todoStore.clearCompleted"/>
 </template>
 
