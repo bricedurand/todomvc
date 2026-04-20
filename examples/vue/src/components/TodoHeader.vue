@@ -1,21 +1,33 @@
-<script setup>
-import { RouterLink } from 'vue-router';
+<script>
+export default {
+  emits: ['add-todo'],
+  data() {
+    return {
+      newTodo: ''
+    }
+  },
+  methods: {
+    addTodo() {
+      const title = this.newTodo.trim();
+      if (title) {
+        this.$emit('add-todo', title);
+        this.newTodo = '';
+      }
+    }
+  }
+}
 </script>
+
 <template>
-  <header class="header">
-    <RouterLink to="/"><h1>todos</h1></RouterLink>
-    <input
+    <header class="header">
+        <h1>todos</h1>
+        <input
             type="text"
             class="new-todo"
             autofocus
-            autocomplete="off"
             placeholder="What needs to be done?"
-            @keyup.enter="
-                // @ts-ignore
-                $emit('add-todo', $event.target.value);
-                // @ts-ignore
-                $event.target.value = '';
-            "
-      />
-  </header>
+            @keyup.enter="addTodo"
+            v-model="newTodo"
+        >
+    </header>
 </template>

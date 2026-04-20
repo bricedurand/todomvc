@@ -1,75 +1,54 @@
-<script setup>
-import { ref, nextTick, computed } from 'vue'
-
-const props = defineProps(['todo', 'index']);
-const emit = defineEmits(['delete-todo', 'edit-todo']);
-
-const editing = ref(false);
-const editInput = ref(null);
-const editText = ref("");
-
-const editModel = computed({
-    get() {
-        return props.todo.title;
+<script>
+export default {
+  props: {
+    todo: Object
+  },
+  data() {
+    return {
+      editing: false,
+      editText: this.todo.title
+    }
+  },
+  methods: {
+    startEdit() {
+      this.editing = true;
+      this.$nextTick(() => {
+        this.$refs.editInput.focus();
+      });
     },
-    set(value) {
-        editText.value = value;
+    finishEdit() {
+      this.editing = false;
+      this.editText = this.editText.trim();
+
+      if (!this.editText) {
+        this.$emit('delete-todo', this.todo);
+      } else {
+        this.$emit('update-todo', { ...this.todo, title: this.editText });
+      }
     },
-});
-
-const toggleModel = computed({
-    get() {
-        return props.todo.completed;
-    },
-    set(value) {
-        emit("toggle-todo", props.todo, value);
-    },
-});
-
-function startEdit() {
-    editing.value = true;
-    nextTick(() => {
-        editInput.value.focus();
-    });
-}
-
-function finishEdit() {
-    editing.value = false;
-     if (editText.value.trim().length === 0)
-        deleteTodo();
-    else
-        updateTodo();
-}
-
-function cancelEdit() {
-    editing.value = false;
-}
-
-function deleteTodo() {
-    emit("delete-todo", props.todo);
-}
-
-function updateTodo() {
-    emit("edit-todo", props.todo, editText.value);
-    editText.value = "";
+    cancelEdit() {
+      this.editing = false;
+      this.editText = this.todo.title;
+    }
+  }
 }
 </script>
 
 <template>
-    <li
-        :class="{
-            completed: todo.completed,
-            editing: editing,
-        }"
+  <li :class="[{ completed: todo.completed }, { editing }]">
+    <div class="view">
+      <input type="checkbox" class="toggle" v-model="todo.completed">
+      <label @dblclick="startEdit">{{ todo.title }}</label>
+      <button class="destroy" @click.prevent="$emit('delete-todo', todo)"></button>
+    </div>
+    <input
+      class="edit"
+      v-if="editing"
+      v-model="editText"
+      ref="editInput"
+      @blur="finishEdit"
+      @keyup.enter="finishEdit"
+      @keyup.esc="cancelEdit"
     >
-        <div class="view">
-            <input type="checkbox" class="toggle" v-model="toggleModel" />
-            <label @dblclick="startEdit">{{ todo.title }}</label>
-            <button class="destroy" @click.prevent="deleteTodo"></button>
-        </div>
-        <div class="input-container">
-            <input id="edit-todo-input" ref="editInput" type="text" class="edit" v-model="editModel" @keyup.enter="finishEdit" @blur="cancelEdit"/>
-            <label class="visually-hidden" for="edit-todo-input">Edit Todo Input</label>
-        </div>
-    </li>
+  </li>
 </template>
