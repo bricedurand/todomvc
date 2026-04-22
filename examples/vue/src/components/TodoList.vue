@@ -12,8 +12,13 @@ export default {
 </script>
 
 <template>
-	<section class="main" v-show="todos.length > 0">
-		<input id="toggle-all" class="toggle-all" type="checkbox" @click="$emit('toggle-all')" />
+	<section v-show="todos.length > 0" class="main">
+		<input
+			id="toggle-all"
+			class="toggle-all"
+			type="checkbox"
+			@click="$emit('toggle-all')"
+		/>
 		<label for="toggle-all">Mark all as complete</label>
 		<ul class="todo-list">
 			<TodoItem

@@ -39,13 +39,13 @@ export default {
 		<div class="view">
 			<input type="checkbox" class="toggle" v-model="todo.completed" />
 			<label @dblclick="startEdit">{{ todo.title }}</label>
-			<button class="destroy" @click.prevent="$emit('delete-todo', todo)"></button>
+			<button class="destroy" @click.prevent="$emit('delete-todo', todo)" />
 		</div>
 		<input
-			class="edit"
 			v-if="editing"
-			v-model="editText"
 			ref="editInput"
+			v-model="editText"
+			class="edit"
 			@blur="finishEdit"
 			@keyup.enter="finishEdit"
 			@keyup.esc="cancelEdit"

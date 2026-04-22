@@ -22,12 +22,12 @@ export default {
 	<header class="header">
 		<h1>todos</h1>
 		<input
+			v-model="newTodo"
 			type="text"
 			class="new-todo"
 			autofocus
 			placeholder="What needs to be done?"
 			@keyup.enter="addTodo"
-			v-model="newTodo"
 		/>
 	</header>
 </template>

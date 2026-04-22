@@ -17,24 +17,26 @@ export default {
 </script>
 
 <template>
-	<footer class="footer" v-show="todos.length > 0">
-		<span class="todo-count"
-			><strong>{{ remainingCount }}</strong> {{ remainingText }}</span
-		>
+	<footer v-show="todos.length > 0" class="footer">
+		<span class="todo-count"><strong>{{ remainingCount }}</strong> {{ remainingText }}</span>
 		<ul class="filters">
 			<li>
-				<RouterLink to="/" exact-active-class="selected">All</RouterLink>
+				<RouterLink to="/" exact-active-class="selected"> All </RouterLink>
 			</li>
 			<li>
-				<RouterLink to="/active" exact-active-class="selected">Active</RouterLink>
+				<RouterLink to="/active" exact-active-class="selected">
+					Active
+				</RouterLink>
 			</li>
 			<li>
-				<RouterLink to="/completed" exact-active-class="selected">Completed</RouterLink>
+				<RouterLink to="/completed" exact-active-class="selected">
+					Completed
+				</RouterLink>
 			</li>
 		</ul>
 		<button
-			class="clear-completed"
 			v-show="todos.some((todo) => todo.completed)"
+			class="clear-completed"
 			@click="$emit('clear-completed')"
 		>
 			Clear completed

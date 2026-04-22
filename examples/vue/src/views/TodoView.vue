@@ -10,9 +10,6 @@ export default {
 		TodoHeader,
 		TodoList,
 	},
-	created() {
-		this.todoStore = useTodoStore();
-	},
 	computed: {
 		filteredTodos() {
 			switch (this.$route.name) {
@@ -25,6 +22,9 @@ export default {
 			}
 		},
 	},
+	created() {
+		this.todoStore = useTodoStore();
+	},
 };
 </script>
 
@@ -36,5 +36,8 @@ export default {
 		@delete-todo="todoStore.deleteTodo"
 		@toggle-all="todoStore.toggleAll"
 	/>
-	<TodoFooter :todos="todoStore.todos" @clear-completed="todoStore.clearCompleted" />
+	<TodoFooter
+		:todos="todoStore.todos"
+		@clear-completed="todoStore.clearCompleted"
+	/>
 </template>
