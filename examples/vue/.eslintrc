@@ -7,7 +7,7 @@
   "extends": [
     "eslint:recommended",
     "plugin:prettier/recommended",
-    "plugin:vue/vue3-essential"
+    "plugin:vue/vue3-recommended"
   ],
   "parser": "vue-eslint-parser",
   "parserOptions": {
@@ -23,9 +23,9 @@
   },
   "rules": {
     "indent": ["error", "tab"],
+    "vue/html-indent": ["error", "tab"],
     "quotes": ["error", "single"],
     "semi": ["error", "always"],
-    "max-len": ["error", { "code": 100 }],
     "camelcase": ["error", { "properties": "never" }],
     "eqeqeq": ["error", "always"],
     "no-var": "error",
