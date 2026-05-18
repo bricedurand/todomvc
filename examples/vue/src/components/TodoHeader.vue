@@ -20,7 +20,7 @@ export default {
 
 <template>
 	<header class="header">
-		<h1>todos</h1>
+    <RouterLink to="/"><h1>todos</h1></RouterLink>
 		<input
 			v-model="newTodo"
 			type="text"
