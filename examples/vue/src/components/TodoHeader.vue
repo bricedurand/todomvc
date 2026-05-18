@@ -26,6 +26,7 @@ export default {
 			type="text"
 			class="new-todo"
 			autofocus
+			autoComplete="off"
 			placeholder="What needs to be done?"
 			@keyup.enter="addTodo"
 		/>

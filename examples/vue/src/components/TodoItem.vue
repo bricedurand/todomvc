@@ -16,7 +16,7 @@ export default {
 				this.$refs.editInput.focus();
 			});
 		},
-		finishEdit() {
+		commitEdit() {
 			this.editing = false;
 			this.editText = this.editText.trim();
 
@@ -46,8 +46,9 @@ export default {
 			ref="editInput"
 			v-model="editText"
 			class="edit"
-			@blur="finishEdit"
-			@keyup.enter="finishEdit"
+			aria-label="Edit todo"
+			@blur="commitEdit"
+			@keyup.enter="commitEdit"
 			@keyup.esc="cancelEdit"
 		/>
 	</li>
