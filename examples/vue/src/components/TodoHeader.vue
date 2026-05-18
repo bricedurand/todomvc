@@ -22,13 +22,13 @@ export default {
 	<header class="header">
     <RouterLink to="/"><h1>todos</h1></RouterLink>
 		<input
-			v-model="newTodo"
 			type="text"
 			class="new-todo"
 			autofocus
 			autoComplete="off"
 			placeholder="What needs to be done?"
 			@keyup.enter="addTodo"
+			v-model="newTodo"
 		/>
 	</header>
 </template>

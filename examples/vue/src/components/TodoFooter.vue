@@ -17,7 +17,7 @@ export default {
 </script>
 
 <template>
-	<footer class="footer" v-show="todos.length > 0">
+	<footer v-show="todos.length > 0" class="footer">
 		<span class="todo-count"><strong>{{ remainingCount }}</strong> {{ remainingText }}</span>
 		<ul class="filters">
 			<li>
